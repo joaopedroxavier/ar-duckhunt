@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 26a279be3ca23e74eb1e425f16bc3760
+timeCreated: 1522173527
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: CF John Doe PERSONAL USE
+  fontNames:
+  - CF John Doe PERSONAL USE
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

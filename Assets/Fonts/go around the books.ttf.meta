@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: bb8da77cf4e71a3468c59cb7a907d59e
+timeCreated: 1522173681
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: go around the books
+  fontNames:
+  - go around the books
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
