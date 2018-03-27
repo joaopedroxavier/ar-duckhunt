@@ -22,6 +22,7 @@ public class GunShoot : MonoBehaviour {
 	private float nextFire;												// Float to store the time the player will be allowed to fire again, after firing
 	private Animator anim;
 	private GunAim gunAim;
+	private bool shot = false;
 
 	void Start () 
 	{
@@ -31,18 +32,26 @@ public class GunShoot : MonoBehaviour {
 
 	void Update () 
 	{
+		if (shot) {
+			Transform cam = Camera.main.transform;
+			Debug.DrawLine (cam.position, cam.position + Camera.main.transform.forward * 20f);
+		}
 		if (Input.GetButtonDown("Fire1") && Time.time > nextFire && !gunAim.GetIsOutOfBounds()) 
 		{
 			nextFire = Time.time + fireRate;
 			muzzleFlash.Play();
 			cartridgeEjection.Play();
 			anim.SetTrigger ("Fire");
+			shot = true;
 
-			Vector3 rayOrigin = gunEnd.position;
+			Transform cam = Camera.main.transform;
 			RaycastHit hit;
-			if (Physics.Raycast(rayOrigin, gunEnd.forward, out hit, weaponRange))
+			if (Physics.Raycast(cam.position, cam.forward, out hit, weaponRange))
 			{
 				HandleHit(hit);
+				Debug.Log ("Coe funciona ai na moral");
+				DuckBehavior duckBehavior = hit.collider.gameObject.GetComponent<DuckBehavior>();
+				duckBehavior.Hit ();
 			}
 		}
 	}
