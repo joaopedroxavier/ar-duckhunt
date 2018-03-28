@@ -7,11 +7,13 @@ public class HUDController : MonoBehaviour {
 
 	public Button playButton;
 	public Text trackingPhaseText;
+	public GameObject shotgun;
 
 	public bool gameStarted;
 	// Use this for initialization
 	void Start () {
 		RemovePlayButton ();
+		HideGun ();
 
 		gameStarted = false;
 	}
@@ -21,15 +23,13 @@ public class HUDController : MonoBehaviour {
 		
 	}
 
-	public void RemoveTrackingText() {
-		trackingPhaseText.gameObject.SetActive (false);
-	}
+	public void RemoveTrackingText() { trackingPhaseText.gameObject.SetActive (false); }
 
-	public void EnablePlayButton() {
-		playButton.gameObject.SetActive (true);
-	}
+	public void EnablePlayButton() { playButton.gameObject.SetActive (true); }
 
-	public void RemovePlayButton() {
-		playButton.gameObject.SetActive (false);
-	}
+	public void RemovePlayButton() { playButton.gameObject.SetActive (false); }
+
+	public void ShowGun() { shotgun.gameObject.SetActive (true); }
+
+	public void HideGun() { shotgun.gameObject.SetActive (false);  }
 }

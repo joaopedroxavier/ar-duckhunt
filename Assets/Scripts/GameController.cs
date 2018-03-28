@@ -20,5 +20,6 @@ public class GameController : MonoBehaviour {
 		hudController.gameStarted = true;
 		hudController.RemovePlayButton ();
 		hudController.RemoveTrackingText ();
+		hudController.ShowGun ();
 	}
 }
