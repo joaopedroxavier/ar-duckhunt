@@ -8,14 +8,14 @@ public class HUDController : MonoBehaviour {
 	public Button playButton;
 	public Text trackingPhaseText;
 	public GameObject shotgun;
+	public GameObject aim;
 
-	public bool gameStarted;
+
 	// Use this for initialization
 	void Start () {
 		RemovePlayButton ();
 		HideGun ();
-
-		gameStarted = false;
+		HideAim ();
 	}
 	
 	// Update is called once per frame
@@ -32,4 +32,9 @@ public class HUDController : MonoBehaviour {
 	public void ShowGun() { shotgun.gameObject.SetActive (true); }
 
 	public void HideGun() { shotgun.gameObject.SetActive (false);  }
+
+	public void ShowAim() {	aim.gameObject.SetActive (true); }
+
+	public void HideAim() {	aim.gameObject.SetActive (false); }
+
 }

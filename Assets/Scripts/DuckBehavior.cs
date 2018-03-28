@@ -20,6 +20,7 @@ public class DuckBehavior : MonoBehaviour {
 
 	public void Hit () {
 		Debug.Log("Ouch!");
+		GameController.numberOfDucks--;
 		Destroy (gameObject, 0.1f);
 	}
 
