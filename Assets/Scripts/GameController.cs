@@ -44,10 +44,11 @@ public class GameController : MonoBehaviour {
 		numberOfDucks = (numLevel / 10) + 2;
 		for (int i = 0; i < numberOfDucks; i++) {
 			Vector3 randomSpawn = new Vector3 (Random.Range(-0.3f, 0.3f), 0.0f, Random.Range(-0.1f, 0.1f));
-			Transform transform = center;
-			transform.Translate (randomSpawn, Space.Self);
+			Vector3 pos = center.position;
+			Quaternion rot = center.rotation;
 
-			GameObject.Instantiate (duckPrefab, transform);
+			GameObject duck = GameObject.Instantiate (duckPrefab, pos, rot);
+			duck.transform.Translate (randomSpawn);
 		}
 	}
 
