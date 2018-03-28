@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 8aedf4314f9994ff8bbf0d86618eee6f
+timeCreated: 1522189023
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Aaargh
+  fontNames:
+  - Aaargh
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

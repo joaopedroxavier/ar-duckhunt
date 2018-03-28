@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/User/Intro.unity
+    guid: ad053da3ce31aee478bbecdc63204c60
+  - enabled: 1
     path: Assets/UnityARKitPlugin/Examples/UnityARKitScene/UnityARKitScene.unity
     guid: c159f2591a9b5c843b0a0442451f78f8
   - enabled: 0

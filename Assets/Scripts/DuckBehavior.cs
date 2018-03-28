@@ -20,11 +20,11 @@ public class DuckBehavior : MonoBehaviour {
 
 	public void Hit () {
 		Debug.Log("Ouch!");
-		Destroy (gameObject, 3f);
+		Destroy (gameObject, 0.1f);
 	}
 
 	void RerollVelocity () {
-		velocity = new Vector3 (Random.Range (0f, 1f), Random.Range (0f, 1f), Random.Range (0f, 0.1f));
+		velocity = new Vector3 (0f, Random.Range (0f, 1f), 0f);
 		velocity.Normalize ();
 	}
 }
