@@ -7,15 +7,30 @@ public class DuckBehavior : MonoBehaviour {
 	// Use this for initialization
 
 	private Vector3 velocity;
-	private float speed = 0.1f;
+	private float speed;
+	public PathGenerator path;
+	Vector3 targetWayPoint;
+	int current = 0;
+	float birthTime;
+	bool turned = false;
+	Vector3 verticalOscillation;
 
 	void Start () {
 		RerollVelocity ();
+		birthTime = Time.time;
+		verticalOscillation = new Vector3 (0.0f, 0.0f, 0.0f);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		transform.position += velocity * speed * Time.deltaTime;
+		verticalOscillation.y = Mathf.Sin (Time.time);
+		transform.position += speed * Time.deltaTime * velocity;
+		transform.position += 0.1f * Time.deltaTime * verticalOscillation;
+		if (Time.time - birthTime >= path.arrivalTimes [current] && current < path.arrivalTimes.Count) {
+			RerollVelocity ();
+			current++;
+			Debug.Log ("Changing");
+		}
 	}
 
 	public void Hit () {
@@ -24,8 +39,36 @@ public class DuckBehavior : MonoBehaviour {
 		Destroy (gameObject, 0.1f);
 	}
 
+	void TurnBack() {
+		if (velocity.x > 0) {
+			transform.Rotate (new Vector3 (0.0f, 90.0f, 0.0f), Space.Self);
+		} else {
+			transform.Rotate (new Vector3 (0.0f, -90.0f, 0.0f), Space.Self);
+		}
+		turned = false;
+	}
+
+	void Turn() {
+		if (velocity.x > 0) {
+			transform.Rotate (new Vector3 (0.0f, -90.0f, 0.0f), Space.Self);
+		} else {
+			transform.Rotate (new Vector3 (0.0f, 90.0f, 0.0f), Space.Self);
+		}
+		turned = true;
+	}
+
 	void RerollVelocity () {
-		velocity = new Vector3 (0f, Random.Range (0f, 1f), 0f);
+		if (turned) {
+			TurnBack ();
+		}
+
+		velocity = new Vector3 (Random.Range(-0.1f, 0.1f), Random.Range (0f, 0.1f), 0.0f);
 		velocity.Normalize ();
+
+		if (!turned) {
+			Turn ();
+		}
+
+		speed = Random.Range (0.2f, 0.4f);
 	}
 }

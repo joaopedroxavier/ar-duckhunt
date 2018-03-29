@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 136602991547546464}
   - component: {fileID: 95662670703686658}
   - component: {fileID: 114239731266781844}
+  - component: {fileID: 114723598484397656}
   m_Layer: 0
   m_Name: Duck
   m_TagString: Untagged
@@ -796,6 +797,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b85acc6429f74abf91654d4be8a7562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: {fileID: 0}
+--- !u!114 &114723598484397656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1602225592082804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2368648b2c2c47c59a38872015ae16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPointsNumber: 10
+  falls: 0
+  pathDuration: 100
+  positions: []
+  arrivalTimes: []
 --- !u!136 &136602991547546464
 CapsuleCollider:
   m_ObjectHideFlags: 1
