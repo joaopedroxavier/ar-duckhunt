@@ -11,25 +11,26 @@ public class DuckIconController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<Image>().sprite = highlighted;
+		show ();
+		turnOn ();
 	}
 
-	void turnOff() {
+	public void turnOff() {
 		Image image = GetComponent<Image> ();
 		image.sprite = normal;
 	}
 
-	void turnOn() {
+	public void turnOn() {
 		Image image = GetComponent<Image> ();
 		image.sprite = highlighted;
 	}
 
-	void hide() {
+	public void hide() {
 		Image image = GetComponent<Image> ();
 		image.enabled = false;
 	}
 
-	void show() {
+	public void show() {
 		Image image = GetComponent<Image> ();
 		image.enabled = true;
 	}

@@ -20,10 +20,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Update() {
-		if (gameStarted && numberOfDucks == 0) {
-			levelCount++;
-			SpawnLevel (levelCount);
-		}
 	}
 
 	public void StartGame() {
@@ -32,6 +28,7 @@ public class GameController : MonoBehaviour {
 			hudController.RemoveTrackingText ();
 			hudController.ShowGun ();
 			hudController.ShowAim ();
+			hudController.ShowDuckBar ();
 
 			gameStarted = true; levelCount = 1;
 			SpawnLevel (levelCount);
@@ -41,7 +38,8 @@ public class GameController : MonoBehaviour {
 	void SpawnLevel(int numLevel) {
 		Transform center = plane.transform;
 
-		numberOfDucks = (numLevel / 10) + 2;
+		numberOfDucks = (5);
+		hudController.loadRound (5);
 		for (int i = 0; i < numberOfDucks; i++) {
 			Vector3 randomSpawn = new Vector3 (Random.Range(-0.3f, 0.3f), 0.0f, Random.Range(-0.1f, 0.1f));
 			Vector3 pos = center.position;

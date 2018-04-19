@@ -9,6 +9,7 @@ public class HUDController : MonoBehaviour {
 	public Text trackingPhaseText;
 	public GameObject shotgun;
 	public GameObject aim;
+	public GameObject duckBar;
 
 
 	// Use this for initialization
@@ -16,6 +17,7 @@ public class HUDController : MonoBehaviour {
 		RemovePlayButton ();
 		HideGun ();
 		HideAim ();
+		HideDuckBar ();
 	}
 	
 	// Update is called once per frame
@@ -37,4 +39,9 @@ public class HUDController : MonoBehaviour {
 
 	public void HideAim() {	aim.gameObject.SetActive (false); }
 
+	public void ShowDuckBar() { duckBar.gameObject.SetActive (true); }
+
+	public void HideDuckBar() { duckBar.gameObject.SetActive (false); }
+
+	public void loadRound(int numberOfDucks) { duckBar.GetComponent<DuckBarController> ().loadRound (numberOfDucks); }
 }

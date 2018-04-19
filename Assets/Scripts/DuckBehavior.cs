@@ -16,13 +16,15 @@ public class DuckBehavior : MonoBehaviour {
 	Vector3 verticalOscillation;
 
 	void Start () {
-		RerollVelocity ();
+		//RerollVelocity ();
 		birthTime = Time.time;
-		verticalOscillation = new Vector3 (0.0f, 0.0f, 0.0f);
+		speed = 0.1f;
+		velocity = new Vector3 (0.0f, 1.0f, 0.0f);
 	}
 
 	// Update is called once per frame
 	void Update () {
+		/*
 		verticalOscillation.y = Mathf.Sin (Time.time);
 		transform.position += speed * Time.deltaTime * velocity;
 		transform.position += 0.1f * Time.deltaTime * verticalOscillation;
@@ -31,6 +33,8 @@ public class DuckBehavior : MonoBehaviour {
 			current++;
 			Debug.Log ("Changing");
 		}
+		*/
+		transform.position += speed * Time.deltaTime * velocity;
 	}
 
 	public void Hit () {
