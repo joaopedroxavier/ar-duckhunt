@@ -10,7 +10,7 @@ public class HUDController : MonoBehaviour {
 	public GameObject shotgun;
 	public GameObject aim;
 	public GameObject duckBar;
-
+	public Text roundText;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +18,7 @@ public class HUDController : MonoBehaviour {
 		HideGun ();
 		HideAim ();
 		HideDuckBar ();
+		HideRoundText ();
 	}
 	
 	// Update is called once per frame
@@ -43,5 +44,43 @@ public class HUDController : MonoBehaviour {
 
 	public void HideDuckBar() { duckBar.gameObject.SetActive (false); }
 
+	public void HideRoundText() { roundText.gameObject.SetActive (false); }
+
+	public void ShowRoundText() { roundText.gameObject.SetActive (true); }
+
 	public void loadRound(int numberOfDucks) { duckBar.GetComponent<DuckBarController> ().loadRound (numberOfDucks); }
+
+	public void PlayReadyAnimation() {
+		Debug.Log ("Coe");
+		StartCoroutine (ReadyAnimation ());
+	}
+
+	IEnumerator ReadyAnimation() {
+		ShowRoundText ();
+		roundText.GetComponent<Text> ().text = "Ready...";
+		yield return new WaitForSeconds (1.0f);
+		StartCoroutine (SetAnimation());
+	}
+
+	IEnumerator SetAnimation() {
+		ShowRoundText ();
+		roundText.GetComponent<Text> ().text = "Set...";
+		yield return new WaitForSeconds (1.0f);
+		StartCoroutine (GoAnimation());
+	}
+
+	IEnumerator GoAnimation() {
+		ShowRoundText ();
+		roundText.GetComponent<Text> ().text = "Go!";
+		yield return new WaitForSeconds (1.0f);
+		HideRoundText ();
+	}
+
+	public void Wait() {
+		StartCoroutine ("WaitLoader");
+	}
+
+	IEnumerator WaitLoader() {
+		yield return new WaitForSeconds (1);
+	}
 }
