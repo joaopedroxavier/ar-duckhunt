@@ -51,8 +51,18 @@ public class HUDController : MonoBehaviour {
 	public void loadRound(int numberOfDucks) { duckBar.GetComponent<DuckBarController> ().loadRound (numberOfDucks); }
 
 	public void PlayReadyAnimation() {
-		Debug.Log ("Coe");
 		StartCoroutine (ReadyAnimation ());
+	}
+
+	public void PlayWellDoneAnimation() {
+		StartCoroutine (WellDoneAnimation ());
+	}
+
+	IEnumerator WellDoneAnimation() {
+		ShowRoundText ();
+		roundText.GetComponent<Text> ().text = "Well done!";
+		yield return new WaitForSeconds (1.0f);
+		StartCoroutine (ReadyAnimation());
 	}
 
 	IEnumerator ReadyAnimation() {
@@ -74,13 +84,5 @@ public class HUDController : MonoBehaviour {
 		roundText.GetComponent<Text> ().text = "Go!";
 		yield return new WaitForSeconds (1.0f);
 		HideRoundText ();
-	}
-
-	public void Wait() {
-		StartCoroutine ("WaitLoader");
-	}
-
-	IEnumerator WaitLoader() {
-		yield return new WaitForSeconds (1);
 	}
 }

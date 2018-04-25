@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422e521fd31f242e298addf87e3e2247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normal: {fileID: 21300000, guid: 0554aeb2aa24c4374906082c6fc6f715, type: 3}
+  normal: {fileID: 21300000, guid: b3ed2d2f9bd874da6934c342b2a38716, type: 3}
   highlighted: {fileID: 21300000, guid: e5c60bee802064912910df64726b40a8, type: 3}
   presses: 0
 --- !u!222 &222894629746646970

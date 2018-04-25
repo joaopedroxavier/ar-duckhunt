@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DuckBarController : MonoBehaviour {
 
@@ -41,7 +42,7 @@ public class DuckBarController : MonoBehaviour {
 	}
 
 	public void updateNumberOfDucks(int newNumberOfDucks) {
-		aliveDucks = newNumberOfDucks;
+		aliveDucks = Math.Max(newNumberOfDucks, 0);
 		for (int i = 0; i < duckIcons.Count; i++) {
 			DuckIconController controller = duckIcons [i].GetComponent<DuckIconController> ();
 			if (i >= aliveDucks) {

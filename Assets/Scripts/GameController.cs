@@ -10,22 +10,35 @@ public class GameController : MonoBehaviour {
 	public GameObject plane = null;
 	public GameObject duckPrefab;
 	private int levelCount = 0;
-	private bool createNewLevel = false;
+	private float roundStartTime;
+	private int currentSpawn = 0;
 
 	public static int numberOfDucks;
 	public static bool gameStarted;
+
+	private List<float> spawnTimers;
 
 	// Use this for initialization
 	void Start () {
 		hudController = GameObject.Find ("HUD").GetComponent<HUDController> ();
 		gameStarted = false;
-
+		currentSpawn = 0;
+		spawnTimers = new List<float>();
 	}
 
 	void Update() {
-		if (createNewLevel) {
-			SpawnLevel (levelCount);
-			createNewLevel = false;
+		if (gameStarted && currentSpawn < spawnTimers.Count) {
+			if (Time.time > roundStartTime + spawnTimers [currentSpawn]) {
+				currentSpawn++;
+				SpawnDuck ();
+			}
+		}
+		if (gameStarted && numberOfDucks == 0) {
+			numberOfDucks = -1;
+			finishLevel ();
+		}
+		if (gameStarted) {
+			hudController.RemovePlayButton ();
 		}
 	}
 
@@ -37,32 +50,62 @@ public class GameController : MonoBehaviour {
 			hudController.ShowAim ();
 			hudController.ShowDuckBar ();
 
-			gameStarted = true; levelCount = 1;
+			levelCount = 1;
 			SpawnLevel (levelCount);
 		}
 	}
 
 	void SpawnLevel(int numLevel) {
-		Transform center = plane.transform;
-		hudController.PlayReadyAnimation ();
-
-		for (int i = 0; i < numberOfDucks; i++) {
-			Vector3 randomSpawn = new Vector3 (Random.Range(-0.3f, 0.3f), 0.0f, Random.Range(-0.1f, 0.1f));
-			Vector3 pos = center.position;
-			Quaternion rot = center.rotation;
-
-			GameObject duck = GameObject.Instantiate (duckPrefab, pos, rot);
-			duck.transform.Translate (randomSpawn);
+		numberOfDucks = (numLevel / 5) + 3;
+		Debug.Log ("Going to animate!");
+		if (!gameStarted)
+			StartCoroutine (Animate ());
+		else {
+			StartCoroutine (AnimateRestart ());
 		}
 	}
 
+	void SpawnDuck() {
+		Debug.Log ("I spawned a duck! " + Time.time);
+		Transform center = plane.transform;
+		Vector3 randomSpawn = new Vector3 (Random.Range(-0.3f, 0.3f), 0.0f, Random.Range(-0.1f, 0.1f));
+		Vector3 pos = center.position;
+		Quaternion rot = center.rotation;
 
-	void finishLevel(int numLevel) {
-		hudController.ShowRoundText ();
-		hudController.roundText.GetComponent<Text> ().text = "Well done!";
-		hudController.Wait ();
+		GameObject duck = GameObject.Instantiate (duckPrefab, pos, rot);
+		duck.transform.Translate (randomSpawn);
+	}
+
+	IEnumerator Animate() {
+		hudController.PlayReadyAnimation ();
+		yield return new WaitForSeconds(3.0f);
+		Debug.Log ("Finished waiting");
+		LoadSpawns ();
+	}
+
+	IEnumerator AnimateRestart() {
+		hudController.PlayWellDoneAnimation ();
+		yield return new WaitForSeconds (4.0f);
+		LoadSpawns ();
+	}
+
+	void LoadSpawns() {
+		Debug.Log ("Cheguei ate aqui2");
+		spawnTimers.Clear ();
+		Debug.Log ("Cheguei ate aqui");
+		for (int i = 0; i < numberOfDucks; i++) {
+			spawnTimers.Add(Random.Range (1.0f, 10.0f));
+		}
+		spawnTimers.Sort ();
+		currentSpawn = 0;
+		roundStartTime = Time.time;
+		gameStarted = true;
+		hudController.loadRound (numberOfDucks);
+	}
+
+	void finishLevel() {
 		levelCount++;
-		createNewLevel = true;
+		SpawnLevel (levelCount);
 	}
 
 
