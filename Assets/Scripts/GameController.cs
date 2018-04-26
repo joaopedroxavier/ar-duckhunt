@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
 	public HUDController hudController;
 	public GameObject plane = null;
 	public GameObject duckPrefab;
-	private int levelCount = 0;
+	public static int levelCount = 0;
 	private float roundStartTime;
 	private int currentSpawn = 0;
 
@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		hudController = GameObject.Find ("HUD").GetComponent<HUDController> ();
-		gameStarted = false;
+		gameStarted = false; 
 		currentSpawn = 0;
 		spawnTimers = new List<float>();
 	}
@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour {
 			hudController.ShowGun ();
 			hudController.ShowAim ();
 			hudController.ShowDuckBar ();
+			hudController.ShowScore ();
 
 			levelCount = 1;
 			SpawnLevel (levelCount);

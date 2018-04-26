@@ -10,6 +10,7 @@ public class HUDController : MonoBehaviour {
 	public GameObject shotgun;
 	public GameObject aim;
 	public GameObject duckBar;
+	public GameObject score;
 	public Text roundText;
 
 	// Use this for initialization
@@ -19,6 +20,7 @@ public class HUDController : MonoBehaviour {
 		HideAim ();
 		HideDuckBar ();
 		HideRoundText ();
+		HideScore ();
 	}
 	
 	// Update is called once per frame
@@ -47,6 +49,10 @@ public class HUDController : MonoBehaviour {
 	public void HideRoundText() { roundText.gameObject.SetActive (false); }
 
 	public void ShowRoundText() { roundText.gameObject.SetActive (true); }
+
+	public void ShowScore() { score.gameObject.SetActive (true); }
+
+	public void HideScore() { score.gameObject.SetActive (false); }
 
 	public void loadRound(int numberOfDucks) { duckBar.GetComponent<DuckBarController> ().loadRound (numberOfDucks); }
 
